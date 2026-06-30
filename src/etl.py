@@ -10,3 +10,10 @@ logging.info('ETL pipeline started.')
 #ETL function to extract data from CSV file
 df = pd.read_csv('data/raw_sales.csv')
 logging.info(f"Extracted {len(df)} records.")
+
+# Transforming the data
+df = df.drop_duplicates() # removing duplicates
+df = df.dropna() # removing missing values
+df["Total"] = df["Quantity"] * df["Price"] # calculating total sales
+df["Customer"] = df["Customer"].str.upper() # standardizing customer names
+logging.info("Data transformation completed.")  
