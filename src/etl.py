@@ -17,3 +17,9 @@ df = df.dropna() # removing missing values
 df["Total"] = df["Quantity"] * df["Price"] # calculating total sales
 df["Customer"] = df["Customer"].str.upper() # standardizing customer names
 logging.info("Data transformation completed.")  
+
+# Loading the data into a new CSV file
+df.to_csv('data/cleaned_sales.csv', index=False)
+logging.info("Data loaded into cleaned_sales.csv.")
+print("ETL pipeline completed successfully.")
+logging.info('ETL pipeline completed successfully.')
