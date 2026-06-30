@@ -1,0 +1,11 @@
+OrderID,Customer,Product,Quantity,Price,Total
+1001,JAMES,Laptop,1,750,750
+1002,ALICE,Mouse,2,20,40
+1003,BOB,Keyboard,1,45,45
+1004,EVE,Monitor,2,180,360
+1005,JOHN,USB Cable,3,10,30
+1006,MARY,Headphones,1,65,65
+1007,PETER,Laptop Stand,2,35,70
+1008,SUSAN,Webcam,1,80,80
+1009,DAVID,Microphone,1,120,120
+1010,GRACE,SSD,2,95,190
