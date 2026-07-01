@@ -1,0 +1,6 @@
+
+{
+    "input_file": "data/raw_sales.csv",
+    "output_file": "data/cleaned_sales.csv",
+    "log_file": "logs/pipeline.log"
+}
