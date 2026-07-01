@@ -6,31 +6,61 @@ import os
 
 
 # loading configuration from config.json
-with open("config.json", "r") as file:
-    config = json.load(file)
-
-INPUT_FILE = config["input_file"]
-OUTPUT_FILE = config["output_file"]
-LOG_FILE = config["log_file"]
+def load_config():
+    with open("config.json", "r") as file:
+        return json.load(file)
 
 
 # setting up logging configuration
-logging.basicConfig(filename=LOG_FILE, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logging.info('ETL pipeline started.')
+def setup_logging(log_file):
+    os.makedirs("logs", exist_ok=True)
+
+    logging.basicConfig(
+        filename=log_file,
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(message)s"
+    )
 
 #ETL function to extract data from CSV file
-df = pd.read_csv(INPUT_FILE)
-logging.info(f"Extracted {len(df)} records.")
+def extract(input_file):
+    logging.info("Extracting data...")
+    df = pd.read_csv(input_file)
+    logging.info(f"Loaded {len(df)} records")
+    return df
 
 # Transforming the data
-df = df.drop_duplicates() # removing duplicates
-df = df.dropna() # removing missing values
-df["Total"] = df["Quantity"] * df["Price"] # calculating total sales
-df["Customer"] = df["Customer"].str.upper() # standardizing customer names
-logging.info("Data transformation completed.")  
+def transform(df):
+    logging.info("Transforming data...")
+
+    df = df.drop_duplicates()
+    df = df.dropna()
+
+    df["Total"] = df["Quantity"] * df["Price"]
+    df["Customer"] = df["Customer"].str.upper()
+
+    return df
 
 # Loading the data into a new CSV file
-df.to_csv(OUTPUT_FILE, index=False)
-logging.info("Data loaded into cleaned_sales.csv.")
-print("ETL pipeline completed successfully.")
-logging.info('ETL pipeline completed successfully.')
+def load(df, output_file):
+    logging.info("Saving cleaned data...")
+    df.to_csv(output_file, index=False)
+
+# main
+def main():
+    config = load_config()
+
+    setup_logging(config["log_file"])
+
+    logging.info("ETL Pipeline Started")
+
+    df = extract(config["input_file"])
+    df = transform(df)
+    load(df, config["output_file"])
+
+    logging.info("ETL Pipeline Finished")
+
+    print("ETL Pipeline completed successfully!")
+
+
+if __name__ == "__main__":
+    main()
