@@ -28,6 +28,35 @@ def extract(input_file):
     logging.info(f"Loaded {len(df)} records")
     return df
 
+# validate the data
+# -------------------------------
+# Validate
+# -------------------------------
+def validate(df):
+    logging.info("Validating data...")
+
+    # Required columns
+    required_columns = [
+        "OrderID",
+        "Customer",
+        "Product",
+        "Quantity",
+        "Price"
+    ]
+
+    # Check if any required column is missing
+    missing = [col for col in required_columns if col not in df.columns]
+
+    if missing:
+        raise ValueError(f"Missing required columns: {missing}")
+
+    # Ensure Quantity and Price are numeric
+    df["Quantity"] = pd.to_numeric(df["Quantity"], errors="raise")
+    df["Price"] = pd.to_numeric(df["Price"], errors="raise")
+
+    logging.info("Validation successful")
+
+    return df
 # Transforming the data
 def transform(df):
     logging.info("Transforming data...")
@@ -55,6 +84,7 @@ def main():
 
     df = extract(config["input_file"])
     df = transform(df)
+    df = validate(df)
     load(df, config["output_file"])
 
     logging.info("ETL Pipeline Finished")
