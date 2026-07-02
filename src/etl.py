@@ -6,6 +6,7 @@ import os
 import sqlite3
 from analytics import run_analytics
 from report import generate_report
+from charts import generate_chart
 
 # loading configuration from config.json
 def load_config():
@@ -110,6 +111,7 @@ def main():
     load_to_database(df, config["database_file"])
     run_analytics(config["database_file"])
     generate_report(config["database_file"])
+    generate_chart(config["database_file"])
 
     logging.info("ETL Pipeline Finished")
 
