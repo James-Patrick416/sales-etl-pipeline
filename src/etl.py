@@ -3,6 +3,7 @@ import json
 import pandas as pd
 import logging
 import os
+import sqlite3
 
 
 # loading configuration from config.json
@@ -10,6 +11,25 @@ def load_config():
     with open("config.json", "r") as file:
         return json.load(file)
 
+
+# loading to SQLite database
+def load_to_database(df, database_file):
+    logging.info("Loading data into SQLite database...")
+
+    # Connect to the database (creates it if it doesn't exist)
+    connection = sqlite3.connect(database_file)
+
+    # Write the DataFrame to a table named 'sales'
+    df.to_sql(
+        "sales",
+        connection,
+        if_exists="replace",  # Replace the table each run
+        index=False
+    )
+
+    connection.close()
+
+    logging.info("Data loaded into SQLite successfully")
 
 # setting up logging configuration
 def setup_logging(log_file):
@@ -86,6 +106,7 @@ def main():
     df = transform(df)
     df = validate(df)
     load(df, config["output_file"])
+    load_to_database(df, config["database_file"])
 
     logging.info("ETL Pipeline Finished")
 
