@@ -1,17 +1,190 @@
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Sales Report</title>
-    </head>
-    <body>
-        <h1>Sales ETL Report</h1>
+<!DOCTYPE html>
+<html>
 
-        <p><strong>Total Revenue:</strong> $1750</p>
-        <p><strong>Total Orders:</strong> 10</p>
-        <p><strong>Average Order Value:</strong> $175.00</p>
-        <p><strong>Highest Order:</strong> JAMES ($750)</p>
+<head>
+<meta charset="UTF-8">
+<title>Sales Dashboard</title>
 
-    </body>
-    </html>
-    
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    margin:40px;
+}
+
+.container {
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+}
+
+.card {
+    background:#1f6feb;
+    color:white;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+table {
+    width:100%;
+    border-collapse:collapse;
+}
+
+th, td {
+    border:1px solid #ddd;
+    padding:10px;
+}
+
+th {
+    background:#1f6feb;
+    color:white;
+}
+
+tr:nth-child(even) {
+    background:#f7f7f7;
+}
+
+img {
+    width:100%;
+    margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Sales ETL Dashboard</h1>
+
+<p>Generated: 2026-07-03 08:18:21.961204</p>
+
+<div class="card">
+<h2>Total Revenue: $1750</h2>
+<h2>Total Orders: 10</h2>
+<h2>Average Order Value: $175.00</h2>
+<h2>Highest Order: JAMES ($750)</h2>
+</div>
+
+<h2>Revenue by Product</h2>
+
+<img src="charts/revenue_by_product.png">
+
+<h2>Sales Records</h2>
+
+<table>
+
+<tr>
+<th>Order ID</th>
+<th>Customer</th>
+<th>Product</th>
+<th>Quantity</th>
+<th>Price</th>
+<th>Total</th>
+</tr>
+
+
+        <tr>
+            <td>1001</td>
+            <td>JAMES</td>
+            <td>Laptop</td>
+            <td>1</td>
+            <td>$750</td>
+            <td>$750</td>
+        </tr>
+        
+        <tr>
+            <td>1002</td>
+            <td>ALICE</td>
+            <td>Mouse</td>
+            <td>2</td>
+            <td>$20</td>
+            <td>$40</td>
+        </tr>
+        
+        <tr>
+            <td>1003</td>
+            <td>BOB</td>
+            <td>Keyboard</td>
+            <td>1</td>
+            <td>$45</td>
+            <td>$45</td>
+        </tr>
+        
+        <tr>
+            <td>1004</td>
+            <td>EVE</td>
+            <td>Monitor</td>
+            <td>2</td>
+            <td>$180</td>
+            <td>$360</td>
+        </tr>
+        
+        <tr>
+            <td>1005</td>
+            <td>JOHN</td>
+            <td>USB Cable</td>
+            <td>3</td>
+            <td>$10</td>
+            <td>$30</td>
+        </tr>
+        
+        <tr>
+            <td>1006</td>
+            <td>MARY</td>
+            <td>Headphones</td>
+            <td>1</td>
+            <td>$65</td>
+            <td>$65</td>
+        </tr>
+        
+        <tr>
+            <td>1007</td>
+            <td>PETER</td>
+            <td>Laptop Stand</td>
+            <td>2</td>
+            <td>$35</td>
+            <td>$70</td>
+        </tr>
+        
+        <tr>
+            <td>1008</td>
+            <td>SUSAN</td>
+            <td>Webcam</td>
+            <td>1</td>
+            <td>$80</td>
+            <td>$80</td>
+        </tr>
+        
+        <tr>
+            <td>1009</td>
+            <td>DAVID</td>
+            <td>Microphone</td>
+            <td>1</td>
+            <td>$120</td>
+            <td>$120</td>
+        </tr>
+        
+        <tr>
+            <td>1010</td>
+            <td>GRACE</td>
+            <td>SSD</td>
+            <td>2</td>
+            <td>$95</td>
+            <td>$190</td>
+        </tr>
+        
+
+</table>
+
+</div>
+
+</body>
+</html>
